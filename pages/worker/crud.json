@@ -1,0 +1,209 @@
+{
+    "definitions": {},
+    "type": "page",
+    "title": "员工管理",
+    "data":{
+        
+    },
+    "body": [
+        {
+            "label": "新增",
+            "type": "button",
+            "actionType": "dialog",
+            "level": "primary",
+            "className": "m-b-sm",
+            "dialog": {
+                "title": "新增表单",
+                "body": {
+                    "type": "form",
+                    "api": "post:${API_HOST}/worker",
+                    "body": [
+                        {
+                            "type": "input-number",
+                            "name": "id",
+                            "label": "ID"
+                        },
+                        {
+                            "type": "input-text",
+                            "name": "name",
+                            "label": "姓名"
+                        },
+                        {
+                            "type": "select",
+                            "name": "gender",
+                            "label": "gender",
+                            "options": [
+                                {
+                                    "label": "男",
+                                    "value": 1
+                                },
+                                {
+                                    "label": "女",
+                                    "value": 2
+                                }
+                            ]
+                        },
+                        {
+                            "type": "input-number",
+                            "name": "age",
+                            "label": "age"
+                        },
+                        {
+                            "type": "input-text",
+                            "name": "nativePlace",
+                            "label": "籍贯"
+                        },
+                        {
+                            "type": "input-text",
+                            "name": "phone",
+                            "label": "手机号"
+                        },
+                        {
+                            "type": "input-text",
+                            "name": "pid",
+                            "label": "身份证号"
+                        },
+                        {
+                            "type": "input-number",
+                            "name": "lineId",
+                            "label": "所属线路"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "crud",
+            "api": "${API_HOST}/worker/list?page=${page}&perPage=${perPage}&fleetId=${fleetId}",
+            "syncLocation": false,
+            "autoGenerateFilter": true,
+            "columns": [
+                {
+                    "name": "id",
+                    "label": "ID"
+                },
+                {
+                    "name": "name",
+                    "label": "name"
+                },
+                {
+                    "name": "gender",
+                    "label": "gender",
+                    "type": "mapping",
+                    "map": {
+                        "1": "男",
+                        "2": "女"
+                    }
+                },
+                {
+                    "name": "age",
+                    "label": "age"
+                },
+                {
+                    "name": "nativePlace",
+                    "label": "籍贯"
+                },
+                {
+                    "name": "phone",
+                    "label": "手机号"
+                },
+                {
+                    "name": "pid",
+                    "label": "身份证号"
+                },
+                {
+                    "name": "lineId",
+                    "label": "所属线路"
+                },
+                {
+                    "name": "fleetId",
+                    "label": "所属车队",
+                    "searchable": {
+                        "type": "input-number",
+                        "name": "fleetId",
+                        "label": "车队id",
+                        "placeholder": "输入id"
+                      }
+                },
+                {
+                    "type": "operation",
+                    "label": "操作",
+                    "buttons": [
+                        {
+                            "label": "修改",
+                            "type": "button",
+                            "actionType": "drawer",
+                            "drawer": {
+                                "title": "新增表单",
+                                "body": {
+                                    "type": "form",
+                                    "api": "post:${API_HOST}/worker",
+                                    "body": [
+                                        {
+                                            "type": "input-number",
+                                            "name": "id",
+                                            "label": "ID"
+                                        },
+                                        {
+                                            "type": "input-text",
+                                            "name": "name",
+                                            "label": "name"
+                                        },
+                                        {
+                                            "type": "select",
+                                            "name": "gender",
+                                            "label": "gender",
+                                            "options": [
+                                                {
+                                                    "label": "男",
+                                                    "value": 1
+                                                },
+                                                {
+                                                    "label": "女",
+                                                    "value": 2
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "input-number",
+                                            "name": "age",
+                                            "label": "age"
+                                        },
+                                        {
+                                            "type": "input-text",
+                                            "name": "nativePlace",
+                                            "label": "籍贯"
+                                        },
+                                        {
+                                            "type": "input-text",
+                                            "name": "phone",
+                                            "label": "手机号"
+                                        },
+                                        {
+                                            "type": "input-text",
+                                            "name": "pid",
+                                            "label": "身份证号"
+                                        },
+                                        {
+                                            "type": "input-number",
+                                            "name": "lineId",
+                                            "label": "所属线路"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "label": "删除",
+                            "type": "button",
+                            "actionType": "ajax",
+                            "level": "danger",
+                            "confirmText": "确认要删除？",
+                            "api": "delete:${API_HOST}/worker/${id}"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

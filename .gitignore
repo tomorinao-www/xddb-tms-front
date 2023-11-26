@@ -1,0 +1,5 @@
+node_modules/
+package-lock.json
+gh-pages/
+.vscode/
+localpkg/

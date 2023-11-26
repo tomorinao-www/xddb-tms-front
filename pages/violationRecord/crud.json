@@ -1,0 +1,183 @@
+{
+    "definitions": {},
+    "type": "page",
+    "title": "违章类型",
+    "initApi": {
+        "url": "${API_HOST}/violation/all",
+        "method": "get",
+        "responseData": {
+            "violation_options": "${items|pick:label~name,value~id}"
+        }
+    },
+    "body": [
+        {
+            "label": "新增",
+            "type": "button",
+            "actionType": "dialog",
+            "level": "primary",
+            "className": "m-b-sm",
+            "dialog": {
+                "title": "新增表单",
+                "body": {
+                    "type": "form",
+                    "api": "post:${API_HOST}/violationRecord",
+                    "body": [
+                        {
+                            "type": "input-number",
+                            "name": "id",
+                            "label": "ID"
+                        },
+                        {
+                            "type": "select",
+                            "name": "violationId",
+                            "label": "违章类型",
+                            "source": "${violation_options}"
+                        },
+                        {
+                            "type": "input-number",
+                            "name": "driverId",
+                            "label": "违章司机"
+                        },
+                        {
+                            "type": "input-text",
+                            "name": "busId",
+                            "label": "违章车牌号"
+                        },
+                        {
+                            "type": "input-text",
+                            "name": "location",
+                            "label": "事发地点"
+                        },
+                        {
+                            "type": "input-datetime",
+                            "name": "createTime",
+                            "label": "时间",
+                            "valueFormat": "YYYY-MM-DDTHH:mm:ss"
+                        },
+                        {
+                            "type": "input-text",
+                            "name": "recorder",
+                            "label": "记录人"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "crud",
+            "api": "${API_HOST}/violationRecord/list?page=${page}&perPage=${perPage}&driverId=${driverId}",
+            "syncLocation": false,
+            "autoGenerateFilter": true,
+            "columns": [
+                {
+                    "name": "id",
+                    "label": "ID"
+                },
+                {
+                    "name": "violationId",
+                    "type": "mapping",
+                    "valueField": "id",
+                    "label": "违章类型",
+                    "source": {
+                        "url": "${API_HOST}/violation/all",
+                        "method": "get",
+                        "responseData": {
+                            "&": "${items|pick:label~name,id~id}"
+                        }
+                    }
+                },
+                {
+                    "name": "driverId",
+                    "label": "违章司机",
+                    "searchable": {
+                        "type": "input-number",
+                        "name": "driverId",
+                        "label": "司机id",
+                        "placeholder": "输入id"
+                      }
+                },
+                {
+                    "name": "busId",
+                    "label": "违章车牌号"
+                },
+                {
+                    "name": "location",
+                    "label": "事发地点"
+                },
+                {
+                    "name": "createTime",
+                    "label": "时间"
+                },
+                {
+                    "name": "recorder",
+                    "label": "记录人"
+                },
+                {
+                    "type": "operation",
+                    "label": "操作",
+                    "buttons": [
+                        {
+                            "label": "修改",
+                            "type": "button",
+                            "actionType": "drawer",
+                            "drawer": {
+                                "title": "新增表单",
+                                "body": {
+                                    "type": "form",
+                                    "api": "post:${API_HOST}/violationRecord",
+                                    "body": [
+                                        {
+                                            "type": "input-number",
+                                            "name": "id",
+                                            "label": "ID"
+                                        },
+                                        {
+                                            "type": "select",
+                                            "name": "violationId",
+                                            "label": "违章类型",
+                                            "source": "${violation_options}"
+                                        },
+                                        {
+                                            "type": "input-number",
+                                            "name": "driverId",
+                                            "label": "违章司机"
+                                        },
+                                        {
+                                            "type": "input-text",
+                                            "name": "busId",
+                                            "label": "违章车牌号"
+                                        },
+                                        {
+                                            "type": "input-text",
+                                            "name": "location",
+                                            "label": "事发地点"
+                                        },
+                                        {
+                                            "type": "input-datetime",
+                                            "name": "createTime",
+                                            "label": "时间",
+                                            "valueFormat": "YYYY-MM-DDTHH:mm:ss"
+                                        },
+                                        {
+                                            "type": "input-text",
+                                            "name": "recorder",
+                                            "label": "记录人"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "label": "删除",
+                            "type": "button",
+                            "actionType": "ajax",
+                            "level": "danger",
+                            "confirmText": "确认要删除？",
+                            "api": "delete:${API_HOST}/violationRecord/${id}"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

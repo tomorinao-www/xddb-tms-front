@@ -1,0 +1,105 @@
+{
+    "definitions": {},
+    "type": "page",
+    "title": "车队管理",
+    "body": [
+        {
+            "label": "新增",
+            "type": "button",
+            "actionType": "dialog",
+            "level": "primary",
+            "className": "m-b-sm",
+            "dialog": {
+                "title": "新增表单",
+                "body": {
+                    "type": "form",
+                    "api": "post:${API_HOST}/fleet",
+                    "body": [
+                        {
+                            "type": "input-number",
+                            "name": "id",
+                            "label": "ID"
+                        },
+                        {
+                            "type": "input-number",
+                            "name": "captainId",
+                            "label": "队长id"
+                        },
+                        {
+                            "type": "input-datetime",
+                            "name": "createTime",
+                            "label": "创建时间",
+                            "valueFormat": "YYYY-MM-DDTHH:mm:ss"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "crud",
+            "api": "${API_HOST}/fleet/list?page=${page}&perPage=${perPage}",
+            "syncLocation": false,
+            "columns": [
+                {
+                    "name": "id",
+                    "label": "ID"
+                },
+                {
+                    "name": "captainId",
+                    "label": "队长id"
+                },
+                {
+                    "type": "date",
+                    "name": "createTime",
+                    "label": "创建时间",
+                    "valueFormat": "YYYY-MM-DDTHH:mm:ss",
+                    "format": "YYYY年MM月DD日 HH时mm分ss秒"
+                },
+                {
+                    "type": "operation",
+                    "label": "操作",
+                    "buttons": [
+                        {
+                            "label": "修改",
+                            "type": "button",
+                            "actionType": "drawer",
+                            "drawer": {
+                                "title": "新增表单",
+                                "body": {
+                                    "type": "form",
+                                    "api": "post:${API_HOST}/fleet",
+                                    "body": [
+                                        {
+                                            "type": "input-number",
+                                            "name": "id",
+                                            "label": "ID"
+                                        },
+                                        {
+                                            "type": "input-number",
+                                            "name": "captainId",
+                                            "label": "队长id"
+                                        },
+                                        {
+                                            "type": "input-datetime",
+                                            "name": "createTime",
+                                            "label": "创建时间",
+                                            "valueFormat": "YYYY-MM-DDTHH:mm:ss"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "label": "删除",
+                            "type": "button",
+                            "actionType": "ajax",
+                            "level": "danger",
+                            "confirmText": "确认要删除？",
+                            "api": "delete:${API_HOST}/fleet/${id}"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

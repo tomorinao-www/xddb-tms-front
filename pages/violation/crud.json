@@ -1,0 +1,100 @@
+{
+    "definitions": {},
+    "type": "page",
+    "title": "违章类型",
+    "body": [
+        {
+            "label": "新增",
+            "type": "button",
+            "actionType": "dialog",
+            "level": "primary",
+            "className": "m-b-sm",
+            "dialog": {
+                "title": "新增表单",
+                "body": {
+                    "type": "form",
+                    "api": "post:${API_HOST}/violation",
+                    "body": [
+                        {
+                            "type": "input-number",
+                            "name": "id",
+                            "label": "ID"
+                        },
+                        {
+                            "type": "input-text",
+                            "name": "name",
+                            "label": "违章名"
+                        },
+                        {
+                            "type": "input-number",
+                            "name": "level",
+                            "label": "违章等级"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "crud",
+            "api": "${API_HOST}/violation/list?page=${page}&perPage=${perPage}",
+            "syncLocation": false,
+            "columns": [
+                {
+                    "name": "id",
+                    "label": "ID"
+                },
+                {
+                    "name": "name",
+                    "label": "违章名"
+                },
+                {
+                    "name": "level",
+                    "label": "违章等级"
+                },
+                {
+                    "type": "operation",
+                    "label": "操作",
+                    "buttons": [
+                        {
+                            "label": "修改",
+                            "type": "button",
+                            "actionType": "drawer",
+                            "drawer": {
+                                "title": "新增表单",
+                                "body": {
+                                    "type": "form",
+                                    "api": "post:${API_HOST}/violation",
+                                    "body": [
+                                        {
+                                            "type": "input-number",
+                                            "name": "id",
+                                            "label": "ID"
+                                        },
+                                        {
+                                            "type": "input-text",
+                                            "name": "name",
+                                            "label": "违章名"
+                                        },
+                                        {
+                                            "type": "input-number",
+                                            "name": "level",
+                                            "label": "违章等级"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "label": "删除",
+                            "type": "button",
+                            "actionType": "ajax",
+                            "level": "danger",
+                            "confirmText": "确认要删除？",
+                            "api": "delete:${API_HOST}/violation/${id}"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

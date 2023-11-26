@@ -1,0 +1,114 @@
+{
+    "definitions": {},
+    "type": "page",
+    "title": "线路管理",
+    "body": [
+        {
+            "label": "新增",
+            "type": "button",
+            "actionType": "dialog",
+            "level": "primary",
+            "className": "m-b-sm",
+            "dialog": {
+                "title": "新增表单",
+                "body": {
+                    "type": "form",
+                    "api": "post:${API_HOST}/line",
+                    "body": [
+                        {
+                            "type": "input-number",
+                            "name": "id",
+                            "label": "ID"
+                        },
+                        {
+                            "type": "input-number",
+                            "name": "fleetId",
+                            "label": "所属车队id"
+                        },
+                        {
+                            "type": "input-number",
+                            "name": "captainId",
+                            "label": "路队长id"
+                        },
+                        {
+                            "type": "input-text",
+                            "name": "description",
+                            "label": "线路描述"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "crud",
+            "api": "${API_HOST}/line/list?page=${page}&perPage=${perPage}",
+            "syncLocation": false,
+            "columns": [
+                {
+                    "name": "id",
+                    "label": "ID"
+                },
+                {
+                    "name": "fleetId",
+                    "label": "所属车队id"
+                },
+                {
+                    "name": "captainId",
+                    "label": "路队长id"
+                },
+                {
+                    "name": "description",
+                    "label": "线路描述"
+                },
+                {
+                    "type": "operation",
+                    "label": "操作",
+                    "buttons": [
+                        {
+                            "label": "修改",
+                            "type": "button",
+                            "actionType": "drawer",
+                            "drawer": {
+                                "title": "新增表单",
+                                "body": {
+                                    "type": "form",
+                                    "api": "post:${API_HOST}/line",
+                                    "body": [
+                                        {
+                                            "type": "input-number",
+                                            "name": "id",
+                                            "label": "ID"
+                                        },
+                                        {
+                                            "type": "input-number",
+                                            "name": "fleetId",
+                                            "label": "所属车队id"
+                                        },
+                                        {
+                                            "type": "input-number",
+                                            "name": "captainId",
+                                            "label": "路队长id"
+                                        },
+                                        {
+                                            "type": "input-text",
+                                            "name": "description",
+                                            "label": "线路描述"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "label": "删除",
+                            "type": "button",
+                            "actionType": "ajax",
+                            "level": "danger",
+                            "confirmText": "确认要删除？",
+                            "api": "delete:${API_HOST}/line/${id}"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

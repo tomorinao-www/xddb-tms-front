@@ -1,0 +1,128 @@
+{
+    "definitions": {},
+    "type": "page",
+    "title": "车辆管理",
+    "body": [
+        {
+            "label": "新增",
+            "type": "button",
+            "actionType": "dialog",
+            "level": "primary",
+            "className": "m-b-sm",
+            "dialog": {
+                "title": "新增表单",
+                "body": {
+                    "type": "form",
+                    "api": "post:${API_HOST}/bus",
+                    "body": [
+                        {
+                            "type": "input-text",
+                            "name": "id",
+                            "label": "车牌号"
+                        },
+                        {
+                            "type": "input-number",
+                            "name": "lineId",
+                            "label": "所属线路id"
+                        },
+                        {
+                            "type": "input-number",
+                            "name": "seatNum",
+                            "label": "座位数"
+                        },
+                        {
+                            "type": "input-text",
+                            "name": "brand",
+                            "label": "品牌"
+                        },
+                        {
+                            "type": "input-number",
+                            "name": "age",
+                            "label": "车龄"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "crud",
+            "api": "${API_HOST}/bus/list?page=${page}&perPage=${perPage}",
+            "syncLocation": false,
+            "columns": [
+                {
+                    "name": "id",
+                    "label": "车牌号"
+                },
+                {
+                    "name": "lineId",
+                    "label": "所属线路id"
+                },
+                {
+                    "name": "seatNum",
+                    "label": "座位数"
+                },
+                {
+                    "name": "brand",
+                    "label": "品牌"
+                },
+                {
+                    "name": "age",
+                    "label": "车龄"
+                },
+                {
+                    "type": "operation",
+                    "label": "操作",
+                    "buttons": [
+                        {
+                            "label": "修改",
+                            "type": "button",
+                            "actionType": "drawer",
+                            "drawer": {
+                                "title": "新增表单",
+                                "body": {
+                                    "type": "form",
+                                    "api": "post:${API_HOST}/bus",
+                                    "body": [
+                                        {
+                                            "type": "input-text",
+                                            "name": "id",
+                                            "label": "车牌号"
+                                        },
+                                        {
+                                            "type": "input-number",
+                                            "name": "lineId",
+                                            "label": "所属线路id"
+                                        },
+                                        {
+                                            "type": "input-number",
+                                            "name": "seatNum",
+                                            "label": "座位数"
+                                        },
+                                        {
+                                            "type": "input-text",
+                                            "name": "brand",
+                                            "label": "品牌"
+                                        },
+                                        {
+                                            "type": "input-number",
+                                            "name": "age",
+                                            "label": "车龄"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "label": "删除",
+                            "type": "button",
+                            "actionType": "ajax",
+                            "level": "danger",
+                            "confirmText": "确认要删除？",
+                            "api": "delete:${API_HOST}/bus/${id}"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

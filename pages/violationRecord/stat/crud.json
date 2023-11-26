@@ -1,0 +1,49 @@
+{
+    "type": "page",
+    "title": "违章记录统计",
+    "body":[
+        {
+            "type": "crud",
+            "api": "${API_HOST}/violationRecord/stat?fleetId=${fleetId}",
+            "syncLocation": false,
+            "filter": {
+                "title": "条件搜索",
+                "body": [
+                  {
+                    "type": "group",
+                    "body": [
+                      {
+                        "type": "input-number",
+                        "name": "fleetId",
+                        "label": "车队id",
+                        "clearable": true,
+                        "placeholder": "输入车队id"
+                      }
+                    ]
+                  }
+                ],
+                "actions": [
+                  {
+                    "type": "reset",
+                    "label": "重置"
+                  },
+                  {
+                    "type": "submit",
+                    "level": "primary",
+                    "label": "查询"
+                  }
+                ]
+              },
+            "columns": [
+                {
+                    "name": "violationName",
+                    "label": "违章类型"
+                },
+                {
+                    "name": "count",
+                    "label": "违章次数"
+                }
+            ]
+        }
+    ]
+}

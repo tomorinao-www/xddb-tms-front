@@ -1,0 +1,55 @@
+{
+  "status": 0,
+  "msg": "",
+  "data": {
+    "pages": [
+      {
+        "label": "管理",
+        "children": [
+          {
+            "label": "车队",
+            "schemaApi": "/pages/fleet/crud.json"
+          },
+          {
+            "label": "线路",
+            "schemaApi": "/pages/line/crud.json"
+          },
+          {
+            "label": "员工",
+            "schemaApi": "/pages/worker/crud.json"
+          },
+          {
+            "label": "车辆",
+            "schemaApi": "/pages/bus/crud.json"
+          },
+          {
+            "label": "违章类型",
+            "schemaApi": "/pages/violation/crud.json"
+          },
+          {
+            "label": "违章记录",
+            "children": [
+              {
+                "label": "详情",
+                "schemaApi": "/pages/violationRecord/crud.json"
+              },
+              {
+                "label": "统计",
+                "schemaApi": "/pages/violationRecord/stat/crud.json"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "外部链接",
+        "children": [
+          {
+            "label": "amis文档",
+            "link": "https://aisuda.bce.baidu.com/amis"
+          }
+        ]
+      }
+    ]
+  }
+}
